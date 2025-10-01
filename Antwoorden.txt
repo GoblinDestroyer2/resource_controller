@@ -1,0 +1,67 @@
+Vraag 1: Welke methode(n) in deze controller hoort/horen bij welke CRUD-actie?
+Create: create() (toont formulier) + store() (slaat data op)
+
+Read: index() (toont lijst) + show() (toont specifiek item)
+
+Update: edit() (toont bewerkformulier) + update() (werkt data bij)
+
+Delete: destroy() (verwijdert item)
+
+
+Vraag 2: Welke methoden geven een view terug?
+index() - toont overzichtspagina
+
+create() - toont aanmaakformulier
+
+show() - toont details van één item
+
+edit() - toont bewerkformulier
+
+
+Vraag 3: Welke methoden handelen form request af? (formulier submit)
+store() - verwerkt het aanmaken van een nieuw item
+
+update() - verwerkt het bijwerken van een bestaand item
+
+destroy() - verwerkt het verwijderen van een item
+
+
+Vraag 4: Waarom staat er bij show, edit, update, en delete een resource en/of id als parameter?
+Omdat deze methoden werken met bestaande resources die geïdentificeerd moeten worden. Je moet weten welk specifiek project je wilt:
+
+tonen (show)
+
+bewerken (edit)
+
+bijwerken (update)
+
+verwijderen (destroy)
+
+
+Vraag 5: Waarom staat er bij de index, create en store geen resource en/of id als parameter?
+index() - toont alle resources, geen specifieke ID nodig
+
+create() - maakt een nieuw resource aan, bestaat nog niet dus geen ID
+
+store() - slaat een nieuw resource op, krijgt data via formulier, niet via URL parameter
+
+
+Vraag 6: In welke methoden zou je validatie toe moeten passen?
+store() - validatie bij het aanmaken van nieuwe data
+
+update() - validatie bij het bijwerken van bestaande data
+
+
+Vraag 7: Welke routes horen hierbij en wat is daarin de standaard? (zoek op in de uitleg)
+Route::resource('projects', ProjectController::class);
+
+Dit genereert automatisch deze routes:
+GET	/projects	index	projects.index
+GET	/projects/create	create	projects.create
+POST	/projects	store	projects.store
+GET	/projects/{project}	show	projects.show
+GET	/projects/{project}/edit	edit	projects.edit
+PUT/PATCH	/projects/{project}	update	projects.update
+DELETE	/projects/{project}	destroy	projects.destroy
+
+De standaard is dat Laravel de route parameter naam gebaseerd op de resource naam (in enkelvoud) gebruikt. Dus {project} in plaats van {id}.
